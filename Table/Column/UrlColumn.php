@@ -76,7 +76,7 @@ class UrlColumn extends AbstractColumn implements ContainerAwareInterface
 		$attr = array();
 		foreach($this->options['link_attr'] as $name => $value)
 		{
-			$attr[] = sprintf("%s=\"%s\"", $name, $value);
+			$attr[] = sprintf('%s="%s"', $name, $value);
 		}
 		
 		$text = $this->options['text'];
@@ -85,6 +85,6 @@ class UrlColumn extends AbstractColumn implements ContainerAwareInterface
 			$text = $this->getValue($row);
 		}
 		
-		return sprintf("<a href=\"%s\"%s>%s</a>", $url, implode(" ", $attr), $text);
+		return sprintf('<a href="%s" %s>%s</a>', $url, implode(' ', $attr), $text);
 	}
 }
