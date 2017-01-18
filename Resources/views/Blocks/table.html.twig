@@ -12,7 +12,7 @@
 
 {% block table_begin %}
 {% spaceless %}
-<table id="{{ name }}"{{ attributes|format_attributes }}>
+<table id="{{ name }}" {{ attributes|format_attributes }}>
 {% endspaceless %}
 {% endblock %}
 
@@ -27,7 +27,7 @@
 <thead>
 	<tr>
 		{% for column in columns %}
-		<th{{ column.headAttributes|format_attributes }}>{{ column.label }}</th>
+		<th {{ column.headAttributes|format_attributes }}>{{ column.label }}</th>
 		{% endfor %}
 	</tr>
 </thead>
@@ -38,9 +38,9 @@
 {% spaceless %}
 <tbody>
 {% for row in rows %}
-<tr{{ row.attributes|format_attributes }}>
+<tr {{ row.attributes|format_attributes }}>
 	{% for column in columns %}
-	<td{{ column.attributes|format_attributes }}>{{ column.content(row)|raw }}</td>
+	<td {{ column.attributes|format_attributes }}>{{ column.content(row)|raw }}</td>
 	{% endfor %}
 </tr>
 {% else %}
