@@ -48,6 +48,7 @@ class AppKernel extends Kernel
 * symfony/http-kernel: >=2.5
 * symfony/dependency-injection: >=2.5
 * doctrine/common: >=2.3
+* propel/propel-bundle: >=3.0
 
 ## Basic usage
 TODO
