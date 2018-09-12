@@ -8,6 +8,8 @@
 
 namespace JGM\TableBundle\Table\PropelQueryBuilder;
 
+use Propel\Runtime\ActiveQuery\ModelCriteria;
+
 class PropelQueryBuilder implements PropelQueryBuilderInterface
 {
     private $table = '';
@@ -82,10 +84,10 @@ class PropelQueryBuilder implements PropelQueryBuilderInterface
     }
 
     /**
-     * @param \ModelCriteria $query
-     * @return \ModelCriteria
+     * @param ModelCriteria $query
+     * @return ModelCriteria
      */
-    public function applyFilterOnQuery(\ModelCriteria $query)
+    public function applyFilterOnQuery(ModelCriteria $query)
     {
         $query = $this->applyFilters($query);
         $query = $this->applyUsages($query);
@@ -126,10 +128,10 @@ class PropelQueryBuilder implements PropelQueryBuilderInterface
     }
 
     /**
-     * @param \ModelCriteria $query
-     * @return \ModelCriteria
+     * @param ModelCriteria $query
+     * @return ModelCriteria
      */
-    private function applyFilters(\ModelCriteria $query)
+    private function applyFilters(ModelCriteria $query)
     {
         foreach ($this->getFilters() as $filter) {
             $filterBy = 'filterBy' . ucfirst($filter->getName());
@@ -139,10 +141,10 @@ class PropelQueryBuilder implements PropelQueryBuilderInterface
     }
 
     /**
-     * @param \ModelCriteria $query
-     * @return \ModelCriteria
+     * @param ModelCriteria $query
+     * @return ModelCriteria
      */
-    private function applyUsages(\ModelCriteria $query)
+    private function applyUsages(ModelCriteria $query)
     {
         foreach ($this->getUsages() as $usage) {
             $useQuery = 'use' . ucfirst($usage->getTable()) . 'Query';
