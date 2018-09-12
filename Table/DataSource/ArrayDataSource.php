@@ -146,7 +146,7 @@ class ArrayDataSource implements DataSourceInterface
 		$value = "";
 		foreach($columns as $key => $column)
 		{
-			$value += sprintf("%s:%s;", $key, get_class($column));
+			$value .= sprintf("%s:%s;", $key, get_class($column));
 		}
 		
 		if($filters !== null && is_array($filters))
@@ -162,11 +162,11 @@ class ArrayDataSource implements DataSourceInterface
 				
 				if($filter->getValue() instanceof DateTime)
 				{
-					$value += sprintf("%s:%s;", $key, $filter->getValue()->getTimestamp());
+					$value .= sprintf("%s:%s;", $key, $filter->getValue()->getTimestamp());
 				}
 				else
 				{
-					$value += sprintf("%s:%s;", $key, $filter->getValue());
+					$value .= sprintf("%s:%s;", $key, $filter->getValue());
 				}
 			}
 		}
