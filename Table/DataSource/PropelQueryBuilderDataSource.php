@@ -13,14 +13,15 @@ use JGM\TableBundle\Table\Order\Model\Order;
 use JGM\TableBundle\Table\Pagination\Model\Pagination;
 use JGM\TableBundle\Table\PropelQueryBuilder\PropelQueryBuilder;
 use JGM\TableBundle\Table\TableException;
+use Propel\Runtime\ActiveQuery\ModelCriteria;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class PropelQueryBuilderDataSource implements DataSourceInterface
 {
-    /** @var \ModelCriteria */
+    /** @var ModelCriteria */
     private $query;
 
-    public function __construct(\ModelCriteria $query)
+    public function __construct(ModelCriteria $query)
     {
         $this->query = $query;
     }
@@ -99,11 +100,11 @@ class PropelQueryBuilderDataSource implements DataSourceInterface
     /**
      * Applys the filters to the query
      *
-     * @param \ModelCriteria $query	        The query object.
+     * @param ModelCriteria $query	        The query object.
      * @param array $filters				Array with filters.
-     * @return \ModelCriteria $query
+     * @return ModelCriteria $query
      */
-    protected function applyFilters(\ModelCriteria $query, array $filters = array())
+    protected function applyFilters(ModelCriteria $query, array $filters = array())
     {
         $query = $query->distinct();
         $tableFilters = new PropelQueryBuilder($query->getModelName());
@@ -130,7 +131,7 @@ class PropelQueryBuilderDataSource implements DataSourceInterface
     {
         if ($order !== null) {
             $useCount = 0;
-            $column = $order->getCurrentColumnName();
+            $orderColumn = $order->getCurrentColumnName();
             if(strpos($order->getCurrentColumnName(),'.') !== false) {
                 $explodedOrder = explode('.',$order->getCurrentColumnName());
                 for($i = 0; $i < sizeof($explodedOrder)-1;$i++) {
@@ -138,9 +139,10 @@ class PropelQueryBuilderDataSource implements DataSourceInterface
                     $query = $query->$use();
                     $useCount++;
                 }
-                $column = end($explodedOrder);
+                $orderColumn = $explodedOrder[sizeof($explodedOrder)-1];
             }
-            $query = $query->orderBy($column, strtoupper($order->getCurrentDirection()));
+            $orderBy = 'orderBy'.ucfirst($orderColumn);
+            $query = $query->$orderBy(strtoupper($order->getCurrentDirection()));
             for($i = 0; $i < $useCount; $i++) {
                 $query = $query->endUse();
             }
