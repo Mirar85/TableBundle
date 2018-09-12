@@ -124,10 +124,10 @@ class PropelQueryBuilderDataSource implements DataSourceInterface
 
     /**
      * @param Order $order
-     * @param \ModelCriteria $query
+     * @param ModelCriteria $query
      * @return mixed
      */
-    protected function applyOrder(Order $order, $query)
+    protected function applyOrder(Order $order, ModelCriteria $query)
     {
         if ($order !== null) {
             $useCount = 0;
