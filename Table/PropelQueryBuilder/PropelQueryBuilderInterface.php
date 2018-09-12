@@ -7,6 +7,8 @@
  */
 namespace JGM\TableBundle\Table\PropelQueryBuilder;
 
+use Propel\Runtime\ActiveQuery\ModelCriteria;
+
 interface PropelQueryBuilderInterface
 {
     /**
@@ -39,8 +41,8 @@ interface PropelQueryBuilderInterface
     public function getTable();
 
     /**
-     * @param \ModelCriteria $query
-     * @return \ModelCriteria
+     * @param ModelCriteria $query
+     * @return ModelCriteria
      */
-    public function applyFilterOnQuery(\ModelCriteria $query);
+    public function applyFilterOnQuery(ModelCriteria $query);
 }
