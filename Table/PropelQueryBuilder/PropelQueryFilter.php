@@ -10,6 +10,7 @@ namespace JGM\TableBundle\Table\PropelQueryBuilder;
 
 
 use JGM\TableBundle\Table\Filter\FilterOperator;
+use Propel\Runtime\ActiveQuery\Criteria;
 
 class PropelQueryFilter implements PropelQueryFilterInterface
 {
@@ -26,28 +27,28 @@ class PropelQueryFilter implements PropelQueryFilterInterface
         }
         switch ($operator) {
             case FilterOperator::LIKE:
-                $this->criteria = \Criteria::LIKE;
+                $this->criteria = Criteria::LIKE;
                 break;
             case FilterOperator::EQ:
-                $this->criteria = \Criteria::EQUAL;
+                $this->criteria = Criteria::EQUAL;
                 break;
             case FilterOperator::GEQ:
-                $this->criteria = \Criteria::GREATER_EQUAL;
+                $this->criteria = Criteria::GREATER_EQUAL;
                 break;
             case FilterOperator::GT:
-                $this->criteria = \Criteria::GREATER_THAN;
+                $this->criteria = Criteria::GREATER_THAN;
                 break;
             case FilterOperator::LEQ:
-                $this->criteria = \Criteria::LESS_EQUAL;
+                $this->criteria = Criteria::LESS_EQUAL;
                 break;
             case FilterOperator::LT:
-                $this->criteria = \Criteria::LESS_THAN;
+                $this->criteria = Criteria::LESS_THAN;
                 break;
             case FilterOperator::NOT_EQ:
-                $this->criteria = \Criteria::NOT_EQUAL;
+                $this->criteria = Criteria::NOT_EQUAL;
                 break;
             default:
-                $this->criteria = \Criteria::LIKE;
+                $this->criteria = Criteria::LIKE;
         }
     }
 
@@ -73,7 +74,7 @@ class PropelQueryFilter implements PropelQueryFilterInterface
     public function getValue()
     {
         $value = $this->value;
-        if($this->criteria === \Criteria::LIKE || $this->criteria === \Criteria::NOT_LIKE) {
+        if($this->criteria === Criteria::LIKE || $this->criteria === Criteria::NOT_LIKE) {
             $value = '%'.$value.'%';
         }
         return $value;
