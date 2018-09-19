@@ -461,6 +461,7 @@ class Table
 		{
 			$row = new Row($dataRow, ++$count);
 			$row->setAttributes( $this->tableType->getRowAttributes($row) );
+			$row->setButtons($this->tableType->getButtons());
 
 			$this->rows[] = $row;
 		}
