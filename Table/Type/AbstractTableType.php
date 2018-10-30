@@ -97,4 +97,12 @@ abstract class AbstractTableType implements TableTypeInterface
 	public function configureOptions(OptionsResolver $resolver)
 	{
 	}
+	
+	/**
+	* @return array
+	*/
+    	public function getButtons()
+    	{
+        	return array();
+	}
 }

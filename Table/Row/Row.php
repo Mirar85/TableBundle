@@ -42,6 +42,13 @@ class Row
 	 */
 	private $attributes;
 	
+	/**
+        * Buttons of the row
+        *
+     	* @var array
+     	*/
+	private $buttons;
+	
 	function __construct($entity, $count)
 	{
 		$this->entity = $entity;
@@ -81,4 +88,20 @@ class Row
 	{
 		return $this->attributes;
 	}
+	
+    	/**
+     	* @return array
+     	*/
+    	public function getButtons(): array
+    	{
+		return $this->buttons;
+    	}
+
+    	/**
+     	* @param array $buttons
+     	*/
+    	public function setButtons(array $buttons): void
+    	{
+		$this->buttons = $buttons;
+    	}
 }
